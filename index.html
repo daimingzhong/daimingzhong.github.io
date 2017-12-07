@@ -151,31 +151,35 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-php" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-php-debug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/06/php/">php debug环境搭建 （Mac + phpStorm + Xampp + Xdebug）</a>
+      <a class="article-title" href="/2017/03/31/php-debug/">PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug)</a>
     </h1>
   
 
         
-        <a href="/2017/12/06/php/" class="archive-article-date">
-  	<time datetime="2017-12-07T04:16:47.544Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-06</time>
+        <a href="/2017/03/31/php-debug/" class="archive-article-date">
+  	<time datetime="2017-04-01T00:55:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#1. intro<br>时间2017年3月31日，网上没有找到很好的教程，写一篇博客，记录下配置过程。    </p>
-<p>#2. Envir (mac os10.12, php5.6)<br>Mac系统10.12，自带php版本5.6(查看terminal -&gt; php -v)</p>
-<p>#3. Xampp安装 (Xampp7.1, Xdebug2.5.1)<br>在xampp官网，选择下载php7.1版本，如果之前装了旧版本的xampp，请删除重装。<br>Xdebug需要和php版本对应，在php56文件夹下的Xdebug不可以使用。<br>升级xdebug，参考：<br><a href="http://www.jianshu.com/p/be74c4707b58" target="_blank" rel="noopener">http://www.jianshu.com/p/be74c4707b58</a><br>修改代码 brew install homebrew/php/php71-xdebug<br>安装后，在/usr/local/Cellar/目录下，新增了php71-xdebug/2.5.1/xdebug.so文件<br>记录路径/usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so<br>此外在php.ini中添加如下命令：（注意zend_extention路径）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">extention = xdebug.so</span><br><span class="line">[xdebug]</span><br><span class="line">zend_extension = /usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so</span><br><span class="line">xdebug.profiler_append = 0</span><br><span class="line">xdebug.profiler_enable = 1</span><br><span class="line">xdebug.profiler_enable_trigger = 0</span><br><span class="line">xdebug.profiler_output_dir = &quot;/tmp&quot;</span><br><span class="line">xdebug.profiler_output_name = &quot;cachegrind.out.%t-%s&quot;</span><br><span class="line">xdebug.remote_autostart=on</span><br><span class="line">xdebug.remote_enable=on</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_mode=&quot;req&quot;</span><br><span class="line">xdebug.remote_log=&quot;/var/log/xdebug.log&quot;</span><br><span class="line">xdebug.remote_host=localhost/127.0.0.1</span><br><span class="line">xdebug.remote_port=9000</span><br><span class="line">xdebug.remote_handler=&quot;dbgp&quot;</span><br><span class="line">xdebug.idekey=&quot;PhpStorm&quot;</span><br><span class="line">其他配置参考网址：   http://muscliy.github.io/2016/04/19/mac%E4%B8%8B%E6%90%AD%E5%BB%BAphp%E6%9C%8D%E5%8A%A1%E5%99%A8xampp-phpstorm-xdebug/</span><br><span class="line">http://laichuanfeng.com/work/configuring-xdebug-with-phpstrom/    </span><br><span class="line">到这里，如果在php描述文件下发现xdebug，说明以上步骤顺利完成。描述文件位置    </span><br><span class="line">http://localhost/xampp/phpinfo.php</span><br></pre></td></tr></table></figure></p>
-<p>#4. 使用phpstorm单步调试<br>如果未配置debug的server，bebug之后会跳到浏览器中，并要求在浏览器中安装debug插件。<br>如果想再本地debug php文件，参考<br><a href="https://www.youtube.com/watch?v=mEJ21RB0F14" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mEJ21RB0F14</a><br><a href="http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645" target="_blank" rel="noopener">http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645</a><br>设置servers，注意一些设置细节，如端口号与其xdebug中对应。</p>
-<p>#5. 总结<br>php跑的比记者还快。      </p>
+        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>There was no good tutorial for debugging php, when it was 2017/3/31. So I kept my experience as a note.</p>
+<h2 id="2-Environment"><a href="#2-Environment" class="headerlink" title="2. Environment"></a>2. Environment</h2><p>mac os10.12, php5.6 (php -v)</p>
+<h2 id="3-Install-Xampp-Xampp7-1-Xdebug2-5-1"><a href="#3-Install-Xampp-Xampp7-1-Xdebug2-5-1" class="headerlink" title="3. Install Xampp (Xampp7.1, Xdebug2.5.1)"></a>3. Install Xampp (Xampp7.1, Xdebug2.5.1)</h2><p>Install php7.1 with xampp. If you installed older ones, please delete it.<br>The version of Xdebug shall correspond to php, so php5.6 is not working under Xdebug.<br>To upgrade Xdebug: <a href="http://www.jianshu.com/p/be74c4707b58" target="_blank" rel="noopener">http://www.jianshu.com/p/be74c4707b58</a>, with<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/php/php71-xdebug</span><br></pre></td></tr></table></figure></p>
+<p>after installation, under /usr/local/Cellar/，there shall be<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so</span><br></pre></td></tr></table></figure></p>
+<p>add the following into php.ini（be careful of the path of zend_extention）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">extention = xdebug.so</span><br><span class="line">[xdebug]</span><br><span class="line">zend_extension = /usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so</span><br><span class="line">xdebug.profiler_append = 0</span><br><span class="line">xdebug.profiler_enable = 1</span><br><span class="line">xdebug.profiler_enable_trigger = 0</span><br><span class="line">xdebug.profiler_output_dir = &quot;/tmp&quot;</span><br><span class="line">xdebug.profiler_output_name = &quot;cachegrind.out.%t-%s&quot;</span><br><span class="line">xdebug.remote_autostart=on</span><br><span class="line">xdebug.remote_enable=on</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_mode=&quot;req&quot;</span><br><span class="line">xdebug.remote_log=&quot;/var/log/xdebug.log&quot;</span><br><span class="line">xdebug.remote_host=localhost/127.0.0.1</span><br><span class="line">xdebug.remote_port=9000</span><br><span class="line">xdebug.remote_handler=&quot;dbgp&quot;</span><br><span class="line">xdebug.idekey=&quot;PhpStorm&quot;</span><br></pre></td></tr></table></figure></p>
+<p>For more configurations:<br><a href="http://muscliy.github.io/2016/04/19/mac%E4%B8%8B%E6%90%AD%E5%BB%BAphp%E6%9C%8D%E5%8A%A1%E5%99%A8xampp-phpstorm-xdebug/" target="_blank" rel="noopener">http://muscliy.github.io/2016/04/19/mac%E4%B8%8B%E6%90%AD%E5%BB%BAphp%E6%9C%8D%E5%8A%A1%E5%99%A8xampp-phpstorm-xdebug/</a><br><a href="http://laichuanfeng.com/work/configuring-xdebug-with-phpstrom/" target="_blank" rel="noopener">http://laichuanfeng.com/work/configuring-xdebug-with-phpstrom/</a>    </p>
+<p>Check if you can find Xdebug under<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/xampp/phpinfo.php</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-Debug-with-PhpStorm"><a href="#4-Debug-with-PhpStorm" class="headerlink" title="4. Debug with PhpStorm"></a>4. Debug with PhpStorm</h2><p>If you did not config debug server, the it will go to explorer and askes you to install plug-in.<br>If you want debug locally, check:<br><a href="https://www.youtube.com/watch?v=mEJ21RB0F14" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mEJ21RB0F14</a><br><a href="http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645" target="_blank" rel="noopener">http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645</a><br>be careful about the settings of server, such as port shall correspond to Xdebug.</p>
+<h2 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5. Conclusion"></a>5. Conclusion</h2><p>Without doubt, PHP is the best language in the world, but Debugging helper you make it faster even than Hongkong journalist.</p>
 
       
 
@@ -185,81 +189,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Tool//" class="article-tag-list-link color5">Tool</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/06/php/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/06/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-07T03:30:40.457Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/06/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/31/php-debug/">展开全文 >></a>
         </p>
       
 

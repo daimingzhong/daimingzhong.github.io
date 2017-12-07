@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1. IntroductionThere was no good tutorial for debugging php, when it was 2017/3/31. So I kept my experience as a note. 2. Environmentmac os10.12, php5.6 (php -v) 3. Install Xampp (Xampp7.1, Xdebug2.5.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug)">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/php-debug/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. IntroductionThere was no good tutorial for debugging php, when it was 2017/3/31. So I kept my experience as a note. 2. Environmentmac os10.12, php5.6 (php -v) 3. Install Xampp (Xampp7.1, Xdebug2.5.">
+<meta property="og:updated_time" content="2017-12-07T05:03:30.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug)">
+<meta name="twitter:description" content="1. IntroductionThere was no good tutorial for debugging php, when it was 2017/3/31. So I kept my experience as a note. 2. Environmentmac os10.12, php5.6 (php -v) 3. Install Xampp (Xampp7.1, Xdebug2.5.">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,37 +153,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-php-debug" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/php-debug/" class="archive-article-date">
-  	<time datetime="2017-04-01T00:55:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/php-debug/">PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug)</a>
+    <h1 class="article-title" itemprop="name">
+      PHP Debugging Envir (Mac + PhpStorm + Xampp + Xdebug)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/03/31/php-debug/" class="archive-article-date">
+  	<time datetime="2017-04-01T00:55:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>There was no good tutorial for debugging php, when it was 2017/3/31. So I kept my experience as a note.</p>
+<h2 id="2-Environment"><a href="#2-Environment" class="headerlink" title="2. Environment"></a>2. Environment</h2><p>mac os10.12, php5.6 (php -v)</p>
+<h2 id="3-Install-Xampp-Xampp7-1-Xdebug2-5-1"><a href="#3-Install-Xampp-Xampp7-1-Xdebug2-5-1" class="headerlink" title="3. Install Xampp (Xampp7.1, Xdebug2.5.1)"></a>3. Install Xampp (Xampp7.1, Xdebug2.5.1)</h2><p>Install php7.1 with xampp. If you installed older ones, please delete it.<br>The version of Xdebug shall correspond to php, so php5.6 is not working under Xdebug.<br>To upgrade Xdebug: <a href="http://www.jianshu.com/p/be74c4707b58" target="_blank" rel="noopener">http://www.jianshu.com/p/be74c4707b58</a>, with<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/php/php71-xdebug</span><br></pre></td></tr></table></figure></p>
+<p>after installation, under /usr/local/Cellar/，there shall be<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so</span><br></pre></td></tr></table></figure></p>
+<p>add the following into php.ini（be careful of the path of zend_extention）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">extention = xdebug.so</span><br><span class="line">[xdebug]</span><br><span class="line">zend_extension = /usr/local/Cellar/php71-xdebug/2.5.1/xdebug.so</span><br><span class="line">xdebug.profiler_append = 0</span><br><span class="line">xdebug.profiler_enable = 1</span><br><span class="line">xdebug.profiler_enable_trigger = 0</span><br><span class="line">xdebug.profiler_output_dir = &quot;/tmp&quot;</span><br><span class="line">xdebug.profiler_output_name = &quot;cachegrind.out.%t-%s&quot;</span><br><span class="line">xdebug.remote_autostart=on</span><br><span class="line">xdebug.remote_enable=on</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_mode=&quot;req&quot;</span><br><span class="line">xdebug.remote_log=&quot;/var/log/xdebug.log&quot;</span><br><span class="line">xdebug.remote_host=localhost/127.0.0.1</span><br><span class="line">xdebug.remote_port=9000</span><br><span class="line">xdebug.remote_handler=&quot;dbgp&quot;</span><br><span class="line">xdebug.idekey=&quot;PhpStorm&quot;</span><br></pre></td></tr></table></figure></p>
+<p>For more configurations:<br><a href="http://muscliy.github.io/2016/04/19/mac%E4%B8%8B%E6%90%AD%E5%BB%BAphp%E6%9C%8D%E5%8A%A1%E5%99%A8xampp-phpstorm-xdebug/" target="_blank" rel="noopener">http://muscliy.github.io/2016/04/19/mac%E4%B8%8B%E6%90%AD%E5%BB%BAphp%E6%9C%8D%E5%8A%A1%E5%99%A8xampp-phpstorm-xdebug/</a><br><a href="http://laichuanfeng.com/work/configuring-xdebug-with-phpstrom/" target="_blank" rel="noopener">http://laichuanfeng.com/work/configuring-xdebug-with-phpstrom/</a>    </p>
+<p>Check if you can find Xdebug under<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/xampp/phpinfo.php</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-Debug-with-PhpStorm"><a href="#4-Debug-with-PhpStorm" class="headerlink" title="4. Debug with PhpStorm"></a>4. Debug with PhpStorm</h2><p>If you did not config debug server, the it will go to explorer and askes you to install plug-in.<br>If you want debug locally, check:<br><a href="https://www.youtube.com/watch?v=mEJ21RB0F14" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mEJ21RB0F14</a><br><a href="http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645" target="_blank" rel="noopener">http://blog.163.com/xinchuangyi123@yeah/blog/static/1208767522013360303645</a><br>be careful about the settings of server, such as port shall correspond to Xdebug.</p>
+<h2 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5. Conclusion"></a>5. Conclusion</h2><p>Without doubt, PHP is the best language in the world, but Debugging helper you make it faster even than Hongkong journalist.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -192,17 +224,107 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/03/31/php-debug/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Environment"><span class="toc-number">2.</span> <span class="toc-text"><a href="#2-Environment" class="headerlink" title="2. Environment"></a>2. Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Install-Xampp-Xampp7-1-Xdebug2-5-1"><span class="toc-number">3.</span> <span class="toc-text"><a href="#3-Install-Xampp-Xampp7-1-Xdebug2-5-1" class="headerlink" title="3. Install Xampp (Xampp7.1, Xdebug2.5.1)"></a>3. Install Xampp (Xampp7.1, Xdebug2.5.1)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Debug-with-PhpStorm"><span class="toc-number">4.</span> <span class="toc-text"><a href="#4-Debug-with-PhpStorm" class="headerlink" title="4. Debug with PhpStorm"></a>4. Debug with PhpStorm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Conclusion"><span class="toc-number">5.</span> <span class="toc-text"><a href="#5-Conclusion" class="headerlink" title="5. Conclusion"></a>5. Conclusion</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -225,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
